@@ -13,14 +13,13 @@ namespace OptimalRouteAPI.Controllers
 			_logger = logger;
 		}
 
-		[HttpGet(Name = "route")]
-		public Models.Route Get()
+		[HttpPost(Name = "optimal-route")]
+		public RouteResponse GetOptimalRoute([FromBody] RouteRequest request)
 		{
-			return new Models.Route()
+			return new RouteResponse()
 			{
-				RouteName = "Route",
-				StartRoute = "New York",
-				EndRoute = "Boston"
+				 Route = new List<string>() { "A", "B", "C", "D" },
+				 TotalTime= 30,
 			};
 		}
 	}
