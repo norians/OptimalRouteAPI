@@ -46,13 +46,19 @@ namespace OptimalRouteAPI.Services
 				}
 			}
 
-			var shorterRoute = routes.OrderBy(x => x.Value).FirstOrDefault();
-
-			return new RouteResponse()
+			if (routes.Any())
 			{
-				Route = shorterRoute.Key,
-				TotalTime = shorterRoute.Value
-			};
+				var shorterRoute = routes.OrderBy(x => x.Value).FirstOrDefault();
+
+				return new RouteResponse()
+				{
+					Route = shorterRoute.Key,
+					TotalTime = shorterRoute.Value
+				};
+			}
+
+			return new RouteResponse();
+			
 		}
 	}
 }
