@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OptimalRouteAPI.Models;
+using OptimalRouteAPI.Services;
 
 namespace OptimalRouteAPI.Controllers
 {
@@ -8,19 +9,19 @@ namespace OptimalRouteAPI.Controllers
 	public class RoutesController : ControllerBase
 	{
 		private readonly ILogger<RoutesController> _logger;
-		public RoutesController(ILogger<RoutesController> logger)
+		private readonly IRouteService _routeService;
+		public RoutesController(ILogger<RoutesController> logger, IRouteService routeRepository)
 		{
 			_logger = logger;
+			_routeService = routeRepository;
 		}
 
-		[HttpPost(Name = "optimal-route")]
+		[HttpPost("optimal-route")]
 		public RouteResponse GetOptimalRoute([FromBody] RouteRequest request)
 		{
-			return new RouteResponse()
-			{
-				 Route = new List<string>() { "A", "B", "C", "D" },
-				 TotalTime= 30,
-			};
+			var route = _routeService.GetOptimalRoute(request);
+
+			return route;
 		}
 	}
 }
