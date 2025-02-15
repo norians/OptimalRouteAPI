@@ -23,6 +23,7 @@ Ensure you have the following installed:
 ```sh
 git clone https://github.com/norians/OptimalRouteAPI.git
 cd OptimalRouteAPI
+dotnet run
 ```
 
 ## Example Request & Response
